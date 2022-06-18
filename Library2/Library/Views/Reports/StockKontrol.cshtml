@@ -1,0 +1,35 @@
+﻿@{ 
+    System.Data.DataRowCollection control = (System.Data.DataRowCollection)ViewData["control"];
+}
+    <thead>
+        <tr>
+            <th>Üye İd</th>
+            <th>Üye Adı -Soy adı</th>
+            <th>Üye Telefon</th>
+            <th>Üye E-Posta</th>
+            <th>Kitap İd</th>
+            <th>Kitap adı</th>
+            <th>Kiralnma tarihi</th>
+            <th>Son tarih</th>
+            <th>Stokta Kalan Kitap</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Library.Models.library.BookReportsRow bookReportsRow in control)
+        {
+            <tr>
+                <td>@bookReportsRow.Member</td>
+
+                <td>@bookReportsRow.memberName @bookReportsRow.memberSurname</td>
+                <td> <a href="tel:@bookReportsRow.Phone">@bookReportsRow.Phone</a></td>
+
+                <td> <a href="mailto:@bookReportsRow.memberEmail">@bookReportsRow.memberEmail</a></td>
+                <td>@bookReportsRow.Book</td>
+                <td>@bookReportsRow.bookName</td>
+                <td>@bookReportsRow.RantedOn.ToString("dd-MM-yyyy")</td>
+                <td>@bookReportsRow.Deadline.ToString("dd-MM-yyyy")</td>
+                <td>@bookReportsRow.ActiveStock</td>
+            </tr>
+        }
+    </tbody>
+

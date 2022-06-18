@@ -1,0 +1,42 @@
+﻿
+@{
+    System.Data.DataRowCollection gains = (System.Data.DataRowCollection)ViewData["gains"];
+    string amount; //kuruştan tlye çevirdik
+
+}
+<script>
+    /* tarihin düzgün gelmesi için(bizim istediğimiz şekilde) script yazdık*/
+    function Calendar() {
+        $(".date").datepicker({ dateFormat: "dd-mm-yy" })
+    }
+    $(document).ready(Calendar) /*sayfa yüklendikten, hazır hale geldikten sonra bu fonksiyonu çalıştır. ready bir eventtir.form loada benzer*/
+</script>
+
+<form method="post">
+
+    <input type="text" name="startDate" value="@ViewData["startDate"]" class="date" />
+    <input type="text" name="endDate" value="@ViewData["endDate"]" class="date" />
+    <input type="submit" value="TAMAM" />
+
+</form>
+<table>
+    <thead>
+        <tr>
+            <th>Kullanıcı İd</th>
+            <th>Kullanıcı Adı</th>
+            <th>Tutar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Library.Models.library.GainsRow gainsRow in gains)
+        {
+            amount = ((float)gainsRow.feeSum / 100).ToString("F2");
+            <tr>
+                <td>@gainsRow.CollectedBy.ToString()</td>
+                <td>@gainsRow.RentalUser</td>
+                <td>@amount</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

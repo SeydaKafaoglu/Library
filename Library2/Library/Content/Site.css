@@ -1,0 +1,164 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: #faefe7;
+    font-weight: bold;
+}
+
+/* Set padding to keep content from hitting the edges */
+/*.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}*/
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+/*.dl-horizontal dt {
+    white-space: normal;
+}*/
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}*/
+a {
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    /*    background-color: #bec1dc;*/
+    /*    background-color: none;*/
+}
+
+    table th, td {
+        border-radius: 8px;
+        line-height: 30px;
+        text-align: center; /*
+        background-color: #bec1dc;*/
+    }
+
+    table th {
+        background-color: #444763;
+        color: white;
+    }
+
+    table tbody tr {
+        background-color: #bec1dc;
+    }
+
+        table tbody tr:hover {
+            background-color: #f7e6d3;
+        }
+
+            table tbody tr:hover td {
+                border-top: 0.5px solid;
+                border-bottom: 0.5px solid;
+            }
+#search {
+    display: flex;
+    flex-direction: column;
+}
+
+#giris {
+    position: relative;
+    text-align: right;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#form {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+    #form input[type=submit], #form input[type=text] {
+        border-radius: 5px;
+        border: 1px solid;
+    }
+
+    #form input[type=text] {
+        width: 35%;
+        padding: 10px;
+        border-color: #eea24f;
+        outline:none;
+    }
+
+    #form input[type=submit] {
+        width: 5%;
+        padding: 11px;
+        background-color: #444763;
+        color: white;
+        font-weight:bold;
+    }
+
+
+#giris a, #formLogin input[type=submit], #usersA, #kayit {
+    text-decoration: none;
+    background: linear-gradient(#ff6a00, #eea24f);
+    color: white;
+    padding: 10px 50px;
+    border-radius: 6px;
+}
+
+#kayit {
+    padding: 3px;
+}
+
+
+#book {
+    font-weight: bold;
+}
+
+#formLogin {
+    text-align: center;
+}
+
+    #formLogin input {
+        border-radius: 5px;
+        border: 1px solid;
+    }
+
+        #formLogin input[type=text], #formLogin input[type=password] {
+            width: 20%;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        #formLogin input[type=submit] {
+            display: block;
+            margin: 50px auto;
+            width: 5%;
+            padding: 10px;
+        }
+
+#usersA {
+    text-align: right;
+    position: absolute;
+    right: 10%;
+    top: 80px;
+    color: white;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+
+.navbar-inverse {
+    background-color: #444763;
+    border-color: #444763;
+}
+#button{
+    border:none;
+    background:none !important;
+    color:orangered;
+}
+

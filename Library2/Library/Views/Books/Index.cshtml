@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    System.Data.DataRowCollection bookResults = (System.Data.DataRowCollection)ViewData["bookResults"];
+    string hirable;
+}
+<script>
+    function Delete(id) {
+        if (confirm("Emin misiniz?") == true) {
+            location.assign("@Url.Action("Delete","Books")/" + id.toString());
+        }
+    }
+</script>
+<script>
+
+
+    $(document).ready(function () {
+        $('#bookIndex').DataTable({
+
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+            },
+            dom: 'Blfrtip',
+            buttons: [
+                'excel', 'pdf'
+            ],
+            language: {
+                paginate: {
+                    next: "İleri",
+                    previous: "Geri"
+                },
+                "sSearch": "Ara:",
+
+                searchPlaceholder: "Arama yapabilirsiniz",
+                "sLengthMenu": "Sayfada _MENU_ kayıt göster",
+                "sInfo": "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor",
+                "sZeroRecords": "Eşleşen kayıt bulunamadı",
+                "sinfoEmpty": "Kayıt yok",
+                "sInfoFiltered": "(_MAX_ kayıt içerisinden bulunan)",
+
+
+            }
+        });
+    });
+
+</script>
+
+<a href="~/books/add">Kitap Ekle</a>
+<h2>Kitaplar</h2>
+<table id="bookIndex">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Kitap Adı</th>
+            <th>Stock/Aktif Stock</th>
+            <th>Dolap/Raf</th>
+            <th>Uygunluk</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (Library.Models.library.BooksRow booksRow in bookResults)
+    {
+        hirable = "";
+        if (booksRow.Hirable == true)
+        {
+            if (booksRow.ActiveStock > 1)
+            {
+                hirable = "checked";
+            }
+        }
+        <tr>
+            <td><a href="~/books/update/@booksRow.id.ToString()">@booksRow.id.ToString()</a>
+            <td>
+                @booksRow.BooksName
+            </td>
+
+            <td>@booksRow.Stock.ToString()/@booksRow.ActiveStock.ToString()</td>
+            <td>@booksRow.Closet.ToString()/@booksRow.Shelf.ToString()</td>
+            
+            <td><input type="checkbox" disabled @hirable /></td>
+            <td>
+                <button id="button" onclick="Delete(@booksRow.id.ToString())">(&Chi;)Sil</button>
+            </td>
+        </tr>
+    }
+</table>
+
+

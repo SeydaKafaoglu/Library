@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Stock";
+    System.Data.DataRowCollection stock = (System.Data.DataRowCollection)ViewData["stock"];
+}
+<script>
+        function loadStock(id) {
+            $("#bas").load("@Url.Action("StockKontrol", "Reports")/" + id);
+    }
+</script>
+
+<h2>Stock</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Kitap İd</th>
+            <th>Kitap Adı</th>
+            <th>Stok</th>
+            <th>Aktif Stok</th>
+            <th>Ödünç Kitaplar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Library.Models.library.StockControlRow stockControlRow in stock)
+        {
+            <tr onclick="loadStock(@stockControlRow.id.ToString())" style="cursor:pointer">
+                <td>@stockControlRow.id.ToString()</td>
+                <td>@stockControlRow.Name</td>
+                <td>@stockControlRow.Stock</td>
+                <td>@stockControlRow.ActiveStock</td>
+                <td>@stockControlRow.RentCount</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+<table id="bas">
+
+</table>
+

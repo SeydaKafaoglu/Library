@@ -1,0 +1,37 @@
+﻿@{ 
+    Library.Models.library.Books1Row books1Row = (Library.Models.library.Books1Row)ViewData["booksRow"];
+    string disabled = "true";
+
+    string hirable;
+    hirable = "";
+    if (books1Row.Hirable == true)
+    {
+        if (books1Row.ActiveStock > 1)
+        {
+            hirable = "checked";
+            disabled = "false";
+        }
+    }
+}
+<script>
+    var buttonOk = document.getElementById("okButton")
+    buttonOk.disabled=@disabled
+</script>
+
+<input type="text" name="booksName" id="booksName" placeholder="Adı" data-val="true" data-val-required="Bu alan boş geçilemez" value="@books1Row.booksName" @disabled/>
+<span class="field-validation-valid" data-valmsg-for="booksName" data-valmsg-replace="true"></span>
+
+<input type="number" name="stock" id="stock" placeholder="Adet" data-val="true" data-val-required="Bu alan boş geçilemez" value="@books1Row.Stock" @disabled />
+<span class="field-validation-valid" data-valmsg-for="stock" data-valmsg-replace="true"></span>
+
+<input type="number" name="activeStock" id="activeStock" placeholder="aktif stok" data-val="true" data-val-required="Bu alan boş geçilemez" value="@books1Row.ActiveStock" @disabled/>
+<span class="field-validation-valid" data-valmsg-for="activeStock" data-valmsg-replace="true"></span>
+
+<input type="number" name="closet" id="closet" placeholder="Dolap" data-val="true" data-val-required="Bu alan boş geçilemez" value="@books1Row.Closet" @disabled/>
+<span class="field-validation-valid" data-valmsg-for="closet" data-valmsg-replace="true"></span>
+
+<input type="number" name="shelf" id="shelf" placeholder="Raf" data-val="true" data-val-required="Bu alan boş geçilemez" value="@books1Row.Shelf" @disabled />
+<span class="field-validation-valid" data-valmsg-for="shelf" data-valmsg-replace="true"></span>
+
+<label for="hirable">Ödünç Verilebilir</label>
+<input type="checkbox" name="hirable" disabled @hirable />

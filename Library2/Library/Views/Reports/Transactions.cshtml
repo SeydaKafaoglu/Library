@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Transactions";
+}
+
+<h2>Kitap Hareketleri</h2>
+<script>
+
+    function Calendar() {
+
+        $(".date").datepicker({ dateFormat:"dd-mm-yy"})
+    }
+    $(document).ready(Calendar) 
+
+</script>
+<form action="~/reports/processtransactions" method="post">
+    <input type="text" name="startDate" value="" class="date" />
+    <input type="text" name="endDate" value="" class="date" />
+    <input type="submit" value="TAMAM" />
+</form>
+
+

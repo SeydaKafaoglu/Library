@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["title"] - Kütüphane</title>      @*viewbag viewdata farkı= ViewBag.title =ViewData["title"] aynısı. viewdata daha hızlıdır. *@
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+
+    <link href="~/Content/Site.css" rel="stylesheet" /> @*en son hangi css varsa o baskın gelir.*@
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css" />
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script> @*jquery en çok kullanılan bootstrapt kütüphanesi. partialview bunsuz olmaz. yaptığımızı browserlardan bağımsız kendi istediğimiz şekilde görünmesi için gerekli.*@
+    <script src="~/Scripts/jquery-ui-1.13.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    @*<script src="https://cdn.datatables.net/plug-ins/1.11.5/i18n/tr.json"></script>*@
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
+
+
+
+
+</head>
+
+<body>
+    
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li> 
+                    <a href="https://wa.me/905345151592" target="_blank">Whatsapp</a>
+                    </li>
+                    <li><a href="~/home">Ana Sayfa</a></li>
+                    <li><a href="~/users">Kullanıcılar</a></li>
+                    <li><a href="~/writers">Yazarlar</a></li>
+                    <li><a href="~/books">Kitaplar</a></li>
+                    <li><a href="~/members">Üyeler</a></li>
+                    <li><a href="~/rentals">Ödünç Verme</a></li>
+                    <li><a href="~/rentals/return">Geri Alma</a></li>
+                    <li><a href="~/reports/gains">Hasılatlar</a></li>
+                    <li><a href="~/reports/processbooksreports">Kitap Özeti</a></li>
+                    <li><a href="~/reports/stock">Stok Kontrol</a></li>
+                    <li><a href="~/reports/delayedbooks">Geciken Kitaplar</a></li>
+                    <li><a href="~/reports/transactions">Kitap Hareketleri</a></li>
+
+
+
+                    @*<li><a href="~/rentals/returnon">Geri Alma</a></li>*@
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody() @*kendi sayfamızı yerleştiriyo.*@
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Kütüphane</p>
+        </footer>
+    </div>
+</body>
+</html>

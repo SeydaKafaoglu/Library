@@ -1,0 +1,91 @@
+﻿
+@{
+    Layout = null;
+    System.Data.DataRowCollection results;
+    //System.Data.DataRowCollection keywords;
+    string hirable;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Kütüphane</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="search">
+        <div id="giris"><a href="~/home/login">Yönetici Girişi</a></div>
+        <div id="form">
+            <form action="~/" method="post">
+                @if (ViewData["keywords"] != null)
+                {
+                    <input type="text" name="keywords" value="@ViewData["keywords"]" placeholder="Kitap adı, Yazar adı, Anahtar kelime" />
+                }
+                else
+                {
+                    <input type="text" name="keywords" value="" placeholder="Kitap adı, Yazar adı, Anahtar kelime" />
+                }
+
+                <input type="submit" name="name" value="Ara" />
+            </form>
+        </div>
+    </div>
+
+
+    @if (ViewData["results"] != null)
+    {
+
+        results = (System.Data.DataRowCollection)ViewData["results"];
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Kitap Adı</th>
+                    <th>Yazar Adı Soyadı</th>
+                    <th>Yazar AKA</th>
+                    <th>Blok/Raf</th>
+                    <th>Uygunluk</th>
+                </tr>
+            </thead>
+
+            @foreach (Library.Models.library.SearchResultsRow resultsRow in results)
+            {
+                hirable = "";
+                if (resultsRow.booksHirable == true)
+                {
+                    if (resultsRow.activeStock > 1)
+                    {
+                        hirable = "checked";
+                    }
+                }
+
+                <tr>
+                    <td id="book"> @resultsRow.Book.ToString()</td>
+                    <td> @resultsRow.Bookname</td>
+                    <td>
+                        @resultsRow.Writername
+                        @if (resultsRow.IsWriterSurnameNull() == false)
+                        {
+                            @resultsRow.WriterSurname
+                        }
+                    </td>
+                    <td>
+                        @if (resultsRow.IsWriterAKANull() == false)
+                        {
+                            <span> @resultsRow.WriterAKA</span>
+                        }
+                    </td>
+                    <td>@resultsRow.booksCloset.ToString()/@resultsRow.booksShelf.ToString()</td>
+                    <td>
+                        <input type="checkbox" disabled @hirable />
+
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+
+</body>
+</html>

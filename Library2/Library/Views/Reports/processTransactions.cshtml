@@ -1,0 +1,59 @@
+﻿
+@{
+    System.Data.DataRowCollection transactions = (System.Data.DataRowCollection)ViewData["transactions"];
+    ViewBag.Title = "processTransactions";
+    string Type = "";
+}
+
+<h2>processTransactions</h2>
+
+
+<script>
+
+    function Calendar() {
+        $(".date").datepicker({ dateFormat:"dd-mm-yy"})
+    }
+    $(document).ready(Calendar)
+</script>
+
+<form method="post">
+    @*form ilk sayfada kalıcaksa actiona gerek yok*@
+    <input type="text" name="startDate" value="@ViewData["startDate"]" class="date" />
+    <input type="text" name="endDate" value="@ViewData["endDate"]" class="date" />
+    <input type="submit" value="TAMAM" />
+
+</form>
+<table>
+    <thead>
+        <tr>
+            <th>Üye İd</th>
+            <th>Üye Adı - Üye Soyadı</th>
+            <th>Kitap Adı</th>
+            <th>Tarih</th>
+            <th>İşlem Türü</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Library.Models.library.TransactionsRow transactionsRow in transactions)
+        {
+        
+        <tr>
+            <td>@transactionsRow.Member.ToString()</td>
+            <td>@transactionsRow.memberName - @transactionsRow.memberSurname </td>
+            <td>@transactionsRow.bookName</td>
+            <td>@transactionsRow.Date.ToString("dd-MM-yyyy")</td>
+            @if (transactionsRow.Type==true)
+            {
+                Type = "Kiralandı";
+            }
+            else
+            {
+                Type = "Geri Alındı";
+            }
+            <td>@Type</td>
+
+        </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,20 @@
+﻿
+
+<h2>Kullanıcı ekle</h2>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<form action="~/writers/add" method="post">
+    <input type="text" name="userName" id="userName" placeholder="Kullanıcı Adı" data-val="true" data-val-required="Bu alan boş geçilemez" maxlength="50"  />
+    <span class="field-validation-valid" data-valmsg-for="userName" data-valmsg-replace="true"></span> @* hata mesajlarının gösterileceği span id=userName mi bu yüzden verdik*@
+    <input type="password" name="password" id="password" placeholder="Şifre giriniz" data-val="true" data-val-required="Bu alan boş geçilemez"/>
+    <span class="field-validation-valid" data-valmsg-for="password" data-valmsg-replace="true"></span>
+    <input type="password" id="password2" placeholder="Şifre(Tekrar)" data-val="true" data-val-required="Bu alan boş geçilemez" data-val-aqualto="Şifreler aynı olmalıdır" data-val-equalto-other="*.password" />
+    <span class="field-validation-valid" data-valmsg-for="password2" data-valmsg-replace="true"></span>
+    <input type="email" name="eMail" id="eMail" placeholder="Mail adresi" data-val="true" data-val-required="Bu alan boş geçilemez" data-val-email="Geçersiz e-posta adresi" maxlength="100"/>
+    <span class="field-validation-valid" data-valmsg-for="eMail" data-valmsg-replace="true"></span>
+    <input id="kayit" type="submit" value="KAYDOL" /> @* name verilemeyn inputlar controllerstan çekilemez. methoda parametre olarak gitmez.*@
+</form>
+@if (ViewData["error"] != null)
+{
+    <span>@ViewData["error"]</span>   
+}

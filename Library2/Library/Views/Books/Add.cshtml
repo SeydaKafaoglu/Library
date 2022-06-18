@@ -1,0 +1,58 @@
+﻿
+@{
+    System.Data.DataRowCollection writers = (System.Data.DataRowCollection)ViewData["writers"];
+    ViewBag.Title = "Add";
+    string writerName; //adı soyad ve aka komple alıyor
+  
+
+}
+
+<h2>Kitap Ekle</h2>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<form action="~/books/processnewbook" method="post">
+    <input type="text" name="bookName" id="bookName" placeholder="Adı" data-val="true" data-val-required="Bu alan boş geçilemez" maxlength="100" />
+    <span class="field-validation-valid" data-valmsg-for="bookName" data-valmsg-replace="true"></span> @* hata mesajlarının gösterileceği span id=userName mi bu yüzden verdik*@
+    <input type="text" name="keywords" placeholder="Anahtar kelime" />
+
+    <input type="number" name="stock" placeholder="Stok" />
+    <span class="field-validation-valid" data-valmsg-for="bookName" data-valmsg-replace="true"></span>
+
+    <input type="number" name="activeStock" placeholder="Aktif Stok" />
+    <span class="field-validation-valid" data-valmsg-for="activeStock" data-valmsg-replace="true"></span>
+
+    <input type="number" name="closet" placeholder="Dolap" />
+    <span class="field-validation-valid" data-valmsg-for="closet" data-valmsg-replace="true"></span>
+
+    <input type="number" name="shelf" placeholder="Raf" />
+    <span class="field-validation-valid" data-valmsg-for="shelf" data-valmsg-replace="true"></span>
+    
+    <label for="hirable">Ödünç Verilebilir</label>
+    <input type="checkbox" name="hirable" value="true" />
+    <select name="writer">
+        @foreach (Library.Models.library.WriterRow writerRow in writers)
+        {
+       
+            writerName = writerRow.Name;
+            if (writerRow.IsSurnameNull() == false)
+            {
+                writerName = writerRow.Name + " " + writerRow.Surname;
+            }
+            if (writerRow.IsAKANull() == false)
+            {
+                writerName = writerName + "(" + writerRow.AKA + ")";
+            }
+
+
+            <option value="@writerRow.id.ToString()">@writerName</option>
+
+        }
+
+    </select>
+    <input id="kayit" type="submit" value="KAYDOL" />
+</form>
+@if (ViewData["error"] != null)
+{
+    <span>@ViewData["error"]</span>
+}
+

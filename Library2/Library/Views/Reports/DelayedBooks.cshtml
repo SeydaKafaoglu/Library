@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "DelayedBooks";
+    System.Data.DataRowCollection delayedBooks = (System.Data.DataRowCollection)ViewData["delayedBooks"];
+
+}
+<script>
+
+
+    $(document).ready(function () {
+        $('#table_id').DataTable({
+
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+            },
+            dom: 'Blfrtip',
+            buttons: [
+                'excel', 'pdf'
+            ],
+            language: {
+                paginate: {
+                    next: "İleri",
+                    previous: "Geri"                   
+                },
+                "sSearch": "Ara:",
+         
+                searchPlaceholder: "Arama yapabilirsiniz",
+                "sLengthMenu": "Sayfada _MENU_ kayıt göster",
+                "sInfo": "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor",
+                "sZeroRecords": "Eşleşen kayıt bulunamadı",
+                "sinfoEmpty":"Kayıt yok",
+                "sInfoFiltered": "(_MAX_ kayıt içerisinden bulunan)",
+
+             
+            }
+        });
+    });
+
+</script>
+<h2>Geciken Kitaplar</h2>
+
+<table id="table_id">
+    <thead>
+        <tr>
+            <th>Üye İd</th>
+            <th>Üye Adı -Soy adı</th>
+            <th>Üye Telefon</th>
+            <th>Üye E-Posta</th>
+            <th>Kitap adı</th>
+            <th>Kiralnma tarihi</th>
+            <th>Son tarih</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Library.Models.library.DelayedBooksRow delayedBooksRow in delayedBooks)
+        {
+
+            <tr>
+                <td><a href="~/members/update/@delayedBooksRow.Member.ToString()">@delayedBooksRow.Member.ToString()</a>
+                <td>@delayedBooksRow.Name @delayedBooksRow.Surname</td>
+                <td> <a href="tel:@delayedBooksRow.Phone">@delayedBooksRow.Phone</a></td>
+                <td> <a href="mailto:@delayedBooksRow.EMail">@delayedBooksRow.EMail</a></td>
+                <td>@delayedBooksRow.bookName</td>
+                <td>@delayedBooksRow.RantedOn.ToString("dd-MM-yyyy")</td>
+                <td>@delayedBooksRow.Deadline.ToString("dd-MM-yyyy")</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+

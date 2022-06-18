@@ -1,0 +1,108 @@
+﻿
+@{
+
+    Library.Models.library.RentalsRow rentalsRow = (Library.Models.library.RentalsRow)ViewData["rentalsRow"];
+    string rantedOn;
+    string deadline;
+    rantedOn = DateTime.Today.ToString("dd/MM/yyyy");
+    deadline = DateTime.Today.AddDays(30).ToString("dd/MM/yyyy");
+
+}
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    function LoadBook() {
+        var idBook = document.getElementById("bookId")
+
+        $("#formBook").load("@Url.Action("BookData","Books")/" + idBook.value);
+
+
+    }
+            function LoadMember() {
+
+            var idMember = document.getElementById("memberId")
+
+            $("#formMember").load("@Url.Action("MemberData","Members")/" + idMember.value);
+    }
+
+
+</script>
+
+
+
+
+<h2>Ödünç Verme</h2>
+
+<form action="~/rentals/processrentals" method="post">
+    <input type="text" name="bookId" id="bookId" placeholder="Kitap İd" data-val="true" data-val-required="Bu alan boş geçilemez" />
+    <span class="field-validation-valid" data-valmsg-for="bookId" data-valmsg-replace="true"></span>
+    <input type="button" value="Ara" onclick="LoadBook()" />
+
+
+    <div id="formBook">
+
+        <input type="text" name="booksName" id="booksName" placeholder="Adı" data-val="true" data-val-required="Bu alan boş geçilemez" />
+        <span class="field-validation-valid" data-valmsg-for="booksName" data-valmsg-replace="true"></span>
+
+        <input type="number" name="stock" id="stock" placeholder="Adet" data-val="true" data-val-required="Bu alan boş geçilemez" />
+        <span class="field-validation-valid" data-valmsg-for="stock" data-valmsg-replace="true"></span>
+
+        <input type="number" name="activeStock" id="activeStock" placeholder="aktif stok" data-val="true" data-val-required="Bu alan boş geçilemez" />
+        <span class="field-validation-valid" data-valmsg-for="activeStock" data-valmsg-replace="true"></span>
+
+        <input type="number" name="closet" id="closet" placeholder="Dolap" data-val="true" data-val-required="Bu alan boş geçilemez" />
+        <span class="field-validation-valid" data-valmsg-for="closet" data-valmsg-replace="true"></span>
+
+        <input type="number" name="shelf" id="shelf" placeholder="Raf" data-val="true" data-val-required="Bu alan boş geçilemez" />
+        <span class="field-validation-valid" data-valmsg-for="shelf" data-valmsg-replace="true"></span>
+
+        <label for="hirable">Ödünç Verilebilir</label>
+        <input type="checkbox" name="hirable" value="true" />
+    </div>
+    <input type="number" name="memberId" id="memberId" placeholder="Üye İd" data-val="true" data-val-required="Bu alan boş geçilemez" />
+    <span class="field-validation-valid" data-valmsg-for="memberId" data-valmsg-replace="true"></span>
+    <input type="button" value="Ara" onclick="LoadMember()" />
+    <div id="formMember">
+
+        <input type="text" name="memberName" id="memberName" placeholder="Adı" data-val="true" data-val-required="Bu alan boş geçilemez" />
+        <span class="field-validation-valid" data-valmsg-for="memberName" data-valmsg-replace="true"></span>
+
+        <input type="text" name="memberSurname" id="memberSurname" placeholder="Soyadı" data-val="true" data-val-required="Bu alan boş geçilemez" />
+        <span class="field-validation-valid" data-valmsg-for="memberSurname" data-valmsg-replace="true"></span>
+
+        <input type="email" name="eMail" id="eMail" placeholder="Mail adresi" data-val="true" data-val-required="Bu alan boş geçilemez" data-val-email="Geçersiz e-posta adresi" />
+        <span class="field-validation-valid" data-valmsg-for="eMail" data-valmsg-replace="true"></span>
+
+        <input type="number" name="phone" id="phone" placeholder="Telefon" data-val="true" data-val-required="Bu alan boş geçilemez" />
+        <span class="field-validation-valid" data-valmsg-for="phone" data-valmsg-replace="true"></span>
+
+        <label for="maleRadio">Erkek</label>
+        <input type="radio" name="gender" value="true" id="maleRadio" />
+
+        <label for="femaleRadio">Kız</label>
+        <input type="radio" name="gender" value="false" id="femaleRadio" />
+        <label>Ban</label>
+        <input type="checkbox" name="banned" id="banned" value="true" />
+
+        <label>Adres</label>
+        <textarea type="text" name="address" id="address" placeholder="Adres" data-val="true" data-val-required="Bu alan boş geçilemez"></textarea>
+        <span class="field-validation-valid" data-valmsg-for="address" data-valmsg-replace="true"></span>
+    </div>
+    @if (ViewData["error"] != null)
+    {
+        <p>@ViewData["error"]</p>
+    }
+    <textarea>Başlangıç Tarihi: @rantedOn</textarea>
+    <textarea>Bitiş Tarihi: @deadline</textarea>
+    <button id="okButton">Kirala</button>
+</form>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,40 @@
+﻿
+@{
+    //ViewBag.Title = "Users";
+    System.Data.DataRowCollection user1results = (System.Data.DataRowCollection)ViewData["user1results"];
+}
+<script>
+    function Delete(id) {
+        if (confirm("Emin misiniz?") == true) {
+            location.assign("@Url.Action("Delete","Users")/" + id.toString());
+        }
+    }
+</script>
+
+
+<a href="~/users/add" id="usersA">Kulanıcı Ekle</a>
+
+<h2>Kullanıcılar</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Kullanıcı Adı</th>
+            <th>E-mail</th>
+            <th></th> @*delete için*@
+
+        </tr>
+    </thead>
+
+    @foreach (Library.Models.library.Users1Row users1Row in user1results)
+    {
+        <tr>
+            <td class="id"><a href="~/users/update/@users1Row.id.ToString()">@users1Row.id.ToString()</a></td>       
+            <td> @users1Row.UsersName.ToString()</td>
+            <td><a href="mailto:@users1Row.UsersEmail">@users1Row.UsersEmail</a></td>
+            <td><button id="button" onclick="Delete(@users1Row.id)">(&Chi;)Sil</button></td>
+        </tr>
+    }
+
+</table>
+

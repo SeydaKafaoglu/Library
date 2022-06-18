@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Return";
+    Library.Models.library.Books1Row books1Row = (Library.Models.library.Books1Row)ViewData["booksRow"];
+
+}
+
+<h2>Return</h2>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+     function LoadBook() {
+        var idBook = document.getElementById("bookId")
+            $("#formBook").load("@Url.Action("BookData","Books")/" + idBook.value);
+            $("#rentalsTable").load("@Url.Action("CurrentRentals","Rentals")/"+ idBook.value);
+        }
+
+    function changed(termsCheckBox) {
+        if (termsCheckBox.checked) {
+            document.getElementById("button").disabled = false;
+        } else {
+            document.getElementById("button").disabled = true;
+        }
+    }
+</script>
+
+
+
+
+<form action="~/rentals/processreturn" method="post">
+    <input type="text" name="bookId" id="bookId" placeholder="Kitap İd" data-val="true" data-val-required="Bu alan boş geçilemez" />
+    <span class="field-validation-valid" data-valmsg-for="bookId" data-valmsg-replace="true"></span>
+    <input type="button" value="Ara" onclick="LoadBook()" />
+    <table id="formBook">
+        <tr>
+            <td>Kitap Adı </td>
+            <td>Stok/Aktif Stok </td>
+            <td>Dolap/Raf </td>
+            <td>Uygunluk </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>TC</td>
+            <td>adı-soyadı</td>
+            <td>kiralama tarihi</td>
+            <td>son tarih</td>
+            <td>gecikme ücreti</td>
+            <td>geri al</td>
+        </tr>
+        <tbody id="rentalsTable">
+        </tbody>
+    </table>
+
+    <input type="submit"  id="button"  value="Tamam" disabled />
+
+
+</form>
+

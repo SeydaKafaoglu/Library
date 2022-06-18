@@ -1,0 +1,54 @@
+﻿
+@{
+    System.Data.DataRowCollection rentBook = (System.Data.DataRowCollection)ViewData["rentBook"];
+    System.Data.DataRowCollection bookId = (System.Data.DataRowCollection)ViewData["bookId"];
+
+
+}
+
+<h2>Ödünç Verme</h2>
+<form action="~/rentals/rent" method="post">
+
+    <input type="text" name="bookId" value="" placeholder="Kitap İd" />
+
+    <input type="submit" name="name" value="Ara" />
+</form>
+@if (ViewData["rentBook"] != null)
+{
+
+    rentBook = (System.Data.DataRowCollection)ViewData["rentBook"];
+    <table>
+        <thead>
+            <tr>
+                <th>Kitap İd</th>
+                <th>Kitap Adı</th>
+                <th>Yazar Adı Soyadı</th>
+                <th>Yazar AKA</th>
+            </tr>
+        </thead>
+
+        @foreach (Library.Models.library.BooksRentTableRow BooksRentTableRow in rentBook)
+        {
+            <tr>
+                <td id="book">
+                    <a href="~/rentals/update/@BooksRentTableRow.id.ToString()">@BooksRentTableRow.id.ToString()</a>
+                </td>
+
+                <td> @BooksRentTableRow.Bookname</td>
+                <td>
+                    @BooksRentTableRow.Writername
+                    @if (BooksRentTableRow.IsWriterSurnameNull() == false)
+                    {
+                        @BooksRentTableRow.WriterSurname
+                    }
+                </td>
+                <td>
+                    @if (BooksRentTableRow.IsWriterAKANull() == false)
+                    {
+                        <span> @BooksRentTableRow.WriterAKA</span>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}

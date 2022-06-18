@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+
+}
+
+<h2>Yazar Ekle</h2>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<form action="~/writers/processnewwriter" method="post">
+    <input type="text" name="writerName" id="writerName" placeholder="Adı" data-val="true" data-val-required="Bu alan boş geçilemez" maxlength="100" />
+    <span class="field-validation-valid" data-valmsg-for="writerName" data-valmsg-replace="true"></span> @* hata mesajlarının gösterileceği span id=userName mi bu yüzden verdik*@
+    <input type="text" name="surname" id="surname" placeholder="Soyadı" maxlength="50" />
+    <input type="text" name="AKA" placeholder="Mahlas" maxlength="50" />
+    <input id="kayit" type="submit" value="KAYDOL" /> @* name verilemeyn inputlar controllerstan çekilemez. methoda parametre olarak gitmez.*@
+</form>
+@if (ViewData["error"] != null)
+{
+    <span>@ViewData["error"]</span>
+}
+

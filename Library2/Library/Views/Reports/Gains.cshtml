@@ -1,0 +1,30 @@
+﻿
+
+<script> /* tarihin düzgün gelmesi için(bizim istediğimiz şekilde) script yazdık*/
+    function Calendar() {
+        alert("")
+        $(".date").datepicker({ dateFormat:"dd-mm-yy"})
+    }
+    $(document).ready(Calendar) /*sayfa yüklendikten, hazır hale geldikten sonra bu fonksiyonu çalıştır. ready bir eventtir.form loada benzer*/
+
+    /*$.ready($(".date").datepicker({ dateFormat: "dd-mm-yy" }))*/
+
+    //$.ready(function () {
+    //    $(".date").datepicker({ dateFormat: "dd-mm-yy" }) /*baştaki fonksiyonun iki farklı yazım şekli*/
+    //})
+
+    /* function(deneme) {
+     * func1()
+     * func2()
+     * } fonk. içinde fonk. yazıldığında yazım sırasıyla çalışır.
+     * 
+     */
+</script>
+
+
+<h2>HASILATLAR</h2>
+<form action="~/reports/processgains" method="post">
+    <input type="text" name="startDate" value="" class="date" />
+    <input type="text" name="endDate" value="" class="date"/>
+    <input type="submit" value="TAMAM" />
+</form>

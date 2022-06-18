@@ -1,0 +1,30 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <title>Login</title>
+</head>
+<body>
+    <div id="formLogin"> 
+        <form action="~/home/checklogin" method="post" >
+            <input type="text" name="userName" value="admin" placeholder="Kullanıcı Adı" />
+            <input type="password" name="password" value="1234" placeholder="Şifre" />
+            <input type="submit" name="name" value="Giriş" />
+        </form>
+        @if (ViewData["error"] != null)
+        {
+            <p>@ViewData["error"]</p>
+        }
+    </div>
+    <div>
+
+    </div>
+</body>
+</html>

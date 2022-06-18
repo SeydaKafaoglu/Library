@@ -1,0 +1,74 @@
+﻿@{
+    string name = "";
+    string surname = "";
+    string phone = "";
+    string email = "";
+    string male = "";
+    string female = "";
+    string banned = "";
+    string address = "";
+    string disabled;
+    if (ViewData["membersRow"] != null)
+    {
+
+        Library.Models.library.MembersDetailsRow membersRow = (Library.Models.library.MembersDetailsRow)ViewData["membersRow"];
+        name = membersRow.memberName;
+        surname = membersRow.memberSurname;
+        phone = membersRow.Phone.ToString();
+        email = membersRow.memberEmail;
+        if (membersRow.IsGenderNull() == false)
+        {
+            if (membersRow.Gender == false)
+            {
+                female = "checked";
+            }
+            else
+            {
+                male = "checked";
+            }
+        }
+
+        
+        if (membersRow.Banned == true)
+        {
+            banned = "ckecked";
+        }
+        disabled = "disabled";
+        address = membersRow.membersAddress;
+
+
+        
+
+        <input type="text" placeholder="Adı" data-val="true" data-val-required="Bu alan boş geçilemez" value="@name" @disabled />
+        <span class="field-validation-valid" data-valmsg-for="memberName" data-valmsg-replace="true"></span>
+
+        <input type="text" placeholder="Soyadı" data-val="true" data-val-required="Bu alan boş geçilemez" value="@surname" @disabled />
+        <span class="field-validation-valid" data-valmsg-for="memberSurname" data-valmsg-replace="true"></span>
+
+        <input type="email" placeholder="Mail adresi" data-val="true" data-val-required="Bu alan boş geçilemez" value="@email" @disabled />
+        <span class="field-validation-valid" data-valmsg-for="eMail" data-valmsg-replace="true"></span>
+
+        <input type="number" placeholder="Telefon" data-val="true" data-val-required="Bu alan boş geçilemez" value="@phone" @disabled />
+        <span class="field-validation-valid" data-valmsg-for="phone" data-valmsg-replace="true"></span>
+
+        <label for="maleRadio">Erkek</label>
+        <input type="radio" name="gender" value="true" id="maleRadio" @male @disabled />
+
+        <label for="femaleRadio">Kız</label>
+        <input type="radio" name="gender" value="false" id="femaleRadio" @female @disabled />
+
+        <label>Ban</label>
+        <input type="checkbox" name="banned" id="banned" value="true"  @disabled @banned  />
+
+        <label>Adres</label>
+        <textarea type="text" placeholder="Adres" data-val="true" data-val-required="Bu alan boş geçilemez" @disabled>@address  </textarea>
+        <span class="field-validation-valid" data-valmsg-for="address" data-valmsg-replace="true"></span>
+    }
+    else
+    {
+        <span>kullanıcı kaydı yok</span>
+    }
+
+}
+
+
